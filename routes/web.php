@@ -15,7 +15,12 @@ use App\Http\Controllers\TodoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('todo');
 });
 
-Route::resource('/todo', TodoController::class);
+Route::resource('/todo',    TodoController::class);
+Route::get('/tasks',        [TodoController::class, 'getTasks']);
+Route::get('/categories',   [TodoController::class, 'getCategories']);
+
+Route::post('/tasks',       [TodoController::class, 'store']);
+Route::delete('/tasks/{id}',     [TodoController::class, 'destroy']);

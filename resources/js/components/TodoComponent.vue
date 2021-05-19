@@ -5,37 +5,32 @@
                 <h1 class="font-semibold text-2xl">Gestor de Tareas</h1>
                 <hr />
                 <div class="mt-8">
-                    <form class="w-full">
+                    <form class="w-full" @submit.prevent>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-3/12 px-3 mb-6 md:mb-0">
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                    id="grid-first-name" type="text" placeholder="Nueva Tarea" />
+                                    id="grid-first-name" type="text" placeholder="Nueva Tarea" v-model="newTask.name" />
                             </div>
                             <div class="w-full md:w-7/12 px-3 text-center">
-                                <div class="">
+                                <div v-if="categories.length">
                                     <div class="mt-2">
-                                        <label class="inline-flex items-center">
-                                            <input type="radio" class="form-radio" name="accountType"
-                                                value="personal" />
-                                            <span class="ml-2">Personal</span>
-                                        </label>
-                                        <label class="inline-flex items-center">
-                                            <input type="radio" class="form-radio" name="accountType"
-                                                value="personal" />
-                                            <span class="ml-2">Personal</span>
-                                        </label>
-                                        <label class="inline-flex items-center ml-6">
-                                            <input type="radio" class="form-radio" name="accountType" value="busines" />
-                                            <span class="ml-2">Business</span>
+                                        <label class="inline-flex items-center ml-4" v-for="category in categories">
+                                            <input type="checkbox" v-model="newTask.categories" :value="category.id" />
+                                            <span class="ml-2">{{category.name}}</span>
                                         </label>
                                     </div>
                                 </div>
+                                <div v-else>
+                                    <span>Cargando..</span>
+                                </div>
                             </div>
                             <div class="w-full md:w-2/12 px-3">
-                                <button class="bg-blue-400 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                                <button
+                                    class="bg-blue-400 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+                                    @click="saveTask()">
                                     Añadir
-                                  </button>
+                                </button>
                             </div>
                         </div>
 
@@ -47,21 +42,23 @@
                                     <th class="py-3 px-6 text-center">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-gray-600 text-sm font-light">
-                                <tr class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100">
+                            <tbody class="text-gray-600 text-sm font-light" v-if="tasks.length">
+                                <tr class="border-b border-gray-200 bg-gray-50 hover:bg-gray-100"
+                                v-for="task in tasks">
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <span class="font-medium">Laravel Project</span>
+                                            <span class="font-medium">{{task.name}}</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <span>Toni Ramon</span>
+                                            <span v-for="category in task.categories" class="mx-2 bg-green-400 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded">{{category.name}}</span>
                                         </div>
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <div class="flex item-center justify-center">
-                                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                                                @click="deleteTask(task.id)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -83,8 +80,49 @@
 
 <script>
     export default {
-        mounted() {
-            console.log("Component mounted.");
+        data() {
+            return {
+                tasks: [],
+                categories: [],
+                newTask: {
+                    name: '',
+                    categories: []
+                },
+            }
+        },
+        created() {
+            // Get tasks from Backend
+            axios.get('/tasks').then(res => {
+                this.tasks = res.data;
+            })
+
+            // Get categories from Backend
+            axios.get('/categories').then(res => {
+                this.categories = res.data;
+            })
+        },
+        methods: {
+            toggleSelectedCategory(category) {
+                if (!this.checkedCategories.includes(category)) {
+                    this.checkedCategories.push(category);
+                } else {
+                    this.checkedCategories.pop(category);
+                }
+            },
+            saveTask() {
+                axios.post('/tasks', this.newTask)
+                    .then((res) => {
+                        this.tasks.push(res.data.data);
+                    })
+            },
+            deleteTask(id) {
+                axios.delete(`/tasks/${id}`)
+                    .then((res) => {
+                        if (res.data.status === 200){
+                            this.tasks.pop(res.data);
+                        } 
+                    })
+            }
         }
     };
 
