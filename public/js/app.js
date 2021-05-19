@@ -1896,9 +1896,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
   }
 });
 
@@ -1929,7 +1996,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-Vue.component('todo', __webpack_require__(/*! ./components/TodoComponent.vue */ "./resources/js/components/TodoComponent.vue").default);
+Vue.component('todo-component', __webpack_require__(/*! ./components/TodoComponent.vue */ "./resources/js/components/TodoComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37577,28 +37644,202 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "flex items-center justify-center h-screen overflow-hidden"
+    },
+    [
+      _c("div", { staticClass: "border-2 rounded-lg border-gray-400 w-2/4" }, [
+        _c("div", { staticClass: "p-8" }, [
+          _c("h1", { staticClass: "font-semibold text-2xl" }, [
+            _vm._v("Gestor de Tareas")
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-8" }, [
+            _c("form", { staticClass: "w-full" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("table", { staticClass: "min-w-max w-full table-auto" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { staticClass: "text-gray-600 text-sm font-light" },
+                  [
+                    _c(
+                      "tr",
+                      {
+                        staticClass:
+                          "border-b border-gray-200 bg-gray-50 hover:bg-gray-100"
+                      },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "py-3 px-6 text-center" }, [
+                          _c(
+                            "div",
+                            { staticClass: "flex item-center justify-center" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      attrs: {
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        fill: "none",
+                                        viewBox: "0 0 24 24",
+                                        stroke: "currentColor"
+                                      }
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          "stroke-linecap": "round",
+                                          "stroke-linejoin": "round",
+                                          "stroke-width": "2",
+                                          d:
+                                            "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+    return _c("div", { staticClass: "flex flex-wrap -mx-3 mb-6" }, [
+      _c("div", { staticClass: "w-full md:w-3/12 px-3 mb-6 md:mb-0" }, [
+        _c("input", {
+          staticClass:
+            "appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+          attrs: {
+            id: "grid-first-name",
+            type: "text",
+            placeholder: "Nueva Tarea"
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full md:w-7/12 px-3 text-center" }, [
+        _c("div", {}, [
+          _c("div", { staticClass: "mt-2" }, [
+            _c("label", { staticClass: "inline-flex items-center" }, [
+              _c("input", {
+                staticClass: "form-radio",
+                attrs: { type: "radio", name: "accountType", value: "personal" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [_vm._v("Personal")])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+            _c("label", { staticClass: "inline-flex items-center" }, [
+              _c("input", {
+                staticClass: "form-radio",
+                attrs: { type: "radio", name: "accountType", value: "personal" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [_vm._v("Personal")])
+            ]),
+            _vm._v(" "),
+            _c("label", { staticClass: "inline-flex items-center ml-6" }, [
+              _c("input", {
+                staticClass: "form-radio",
+                attrs: { type: "radio", name: "accountType", value: "busines" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "ml-2" }, [_vm._v("Business")])
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full md:w-2/12 px-3" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "bg-blue-400 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          },
+          [
+            _vm._v(
+              "\n                                Añadir\n                              "
+            )
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c(
+        "tr",
+        {
+          staticClass:
+            "bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+        },
+        [
+          _c("th", { staticClass: "py-3 px-6 text-left" }, [_vm._v("Tarea")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "py-3 px-6 text-left" }, [
+            _vm._v("Categorias")
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "py-3 px-6 text-center" }, [
+            _vm._v("Acciones")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "py-3 px-6 text-left" }, [
+      _c("div", { staticClass: "flex items-center" }, [
+        _c("span", { staticClass: "font-medium" }, [_vm._v("Laravel Project")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "py-3 px-6 text-left" }, [
+      _c("div", { staticClass: "flex items-center" }, [
+        _c("span", [_vm._v("Toni Ramon")])
       ])
     ])
   }
